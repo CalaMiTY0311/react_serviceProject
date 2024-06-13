@@ -21,13 +21,6 @@ const Navbar = (props) => {
 
   console.log(authUser)
 
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const user = useSelector((state) => state.user.user);
-  // const { name, image } = user;  
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
 
   return (
     <>
@@ -56,11 +49,6 @@ const Navbar = (props) => {
             </p>
           </div>
 
-          {/* <div className="flex flex-row items-center cursor-pointer">
-            <p className=" font-inter text-base font-medium tracking-normal leading-none text-center ">
-              Shopping bag
-            </p>
-          </div> */}
           {authUser ? ( 
           <Link to={`${authUser.username}`}>
              <div className="flex flex-row items-center cursor-pointer">

@@ -4,9 +4,8 @@ import Main from "./Components/Main/Main";
 import { Navigate, BrowserRouter, Routes, Route } from "react-router-dom";
 import FilteredProducts from "./Components/FiltredProducts/FilteredProducts";
 // import ModelPosts from "./Components/ModelPosts/ModelPosts";
-// import ProfilePage from "./Components/ProfilePage/ProfilePage";
+import ProfilePage from "./Components/Profile/ProfilePage";
 import SingleProduct from "./Components/FiltredProducts/SingleProduct";
-import SignupLogin from "./Components/Login/SignupLogin";
 import AuthForm from "./Components/Auth/Authform";
 import Write from "./Components/Write/Write";
 
@@ -17,6 +16,7 @@ import { auth } from "./config/firebase-config";
 function App() {
 
   const [authUser] = useAuthState(auth);
+  console.log(authUser)
 
   return (
     <div className="App">
@@ -29,7 +29,7 @@ function App() {
           ></Route>
           <Route path='/auth' element={!authUser ? <AuthForm /> : <Navigate to='/' />} />
           <Route path="/post" element = {<Write/>}></Route>
-          <Route path="/post" element = {<Write/>}></Route>
+          <Route path='/:username' element={<ProfilePage />} />
           <Route
             path="/filteredProducts/:type"
             element={<FilteredProducts></FilteredProducts>}

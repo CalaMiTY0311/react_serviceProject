@@ -11,56 +11,50 @@ import { Input } from "@material-tailwind/react";
 
 import useLogin from "../../hooks/useLogin";
 
-import { useNavigate } from "react-router-dom";
-
-
 const Login = () => {
- 
-    const [inputs, setInputs] = useState({
-		email: "",
-		password: "",
-	});
-	const { loading, error, login } = useLogin();
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const { loading, error, login } = useLogin();
 
 
 
   return (
     <>
-    <CardBody className="flex flex-col gap-4">
-          <Input
-            label="Email"
-            size="lg"
-            type="Email"
-            name="Email"
-            onChange={(event) => {
-                setInputs({...inputs,email:event.target.value});
-            }}
-          />
-          <Input
-            label="Password"
-            size="lg"
-            type="text"
-            name="password"
-            onChange={(event) => {
-                setInputs({...inputs,password:event.target.value});
-            }}
-          />
-          <div className="-ml-2.5"></div>
-        </CardBody>
+      <CardBody className="flex flex-col gap-4">
+        <Input
+          label="Email"
+          size="lg"
+          type="Email"
+          name="Email"
+          onChange={(event) => {
+            setInputs({ ...inputs, email: event.target.value });
+          }}
+        />
+        <Input
+          label="Password"
+          size="lg"
+          type="text"
+          name="password"
+          onChange={(event) => {
+            setInputs({ ...inputs, password: event.target.value });
+          }}
+        />
+        <div className="-ml-2.5"></div>
+      </CardBody>
 
-<CardFooter className="pt-0">
-<Button
-  variant="gradient"
-  fullWidth
-  onClick={()=>login(inputs)}
->
-  Login
-</Button>
-<Typography variant="small" className="mt-6 flex justify-center">
-  Image is Optional
-</Typography>
-</CardFooter>
-</>
+      <CardFooter className="pt-0">
+        <Button
+          variant="gradient"
+          fullWidth
+          onClick={() => login(inputs)}
+        >
+          Login
+        </Button>
+      </CardFooter>
+    </>
   );
 };
 

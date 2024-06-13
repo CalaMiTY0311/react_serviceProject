@@ -1,5 +1,5 @@
 import { Container, Flex, Link, Skeleton, SkeletonCircle, Text, VStack } from "@chakra-ui/react";
-import ProfileHeader from "./Profile/ProfileHeader";
+import ProfileHeader from "./ProfileHeader";
 // import ProfileTabs from "../../components/Profile/ProfileTabs";
 // import ProfilePosts from "../../components/Profile/ProfilePosts";
 // import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
@@ -10,8 +10,8 @@ const ProfilePage = () => {
 	const { username } = useParams();
 	// const { isLoading, userProfile } = useGetUserProfileByUsername(username);
 
-	const userNotFound = !isLoading && !userProfile;
-	if (userNotFound) return <UserNotFound />;
+	// const userNotFound = !isLoading && !userProfile;
+	// if (userNotFound) return <UserNotFound />;
 
 	return (
 		<Container maxW='container.lg' py={5}>
