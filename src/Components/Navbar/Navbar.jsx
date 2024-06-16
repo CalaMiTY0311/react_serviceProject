@@ -18,6 +18,7 @@ const Navbar = (props) => {
 
   const { handleLogout, isLoggingOut } = useLogout();
 	const authUser = useAuthStore((state) => state.user);
+  
 
   console.log(authUser)
 
