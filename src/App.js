@@ -16,6 +16,7 @@ import { auth } from "./config/firebase-config";
 function App() {
 
   const [authUser] = useAuthState(auth);
+  // console.log(authUser)
 
   return (
     <div className="App">

@@ -110,6 +110,7 @@ const ProfilePosts = () => {
 								</button>
 							</div>
 						</div>
+						{/* <!-- User Info with Three-Dot Menu --> */}
 					</div>
 				</div>
    )

@@ -18,7 +18,8 @@ const Navbar = (props) => {
 
   const { handleLogout, isLoggingOut } = useLogout();
 	const authUser = useAuthStore((state) => state.user);
-  
+  console.log(authUser)
+
   return (
     <>
       <div className="flex justify-around items-center">

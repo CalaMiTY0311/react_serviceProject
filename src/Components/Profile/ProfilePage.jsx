@@ -1,20 +1,22 @@
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
-import { Container, Flex, Link, Skeleton, SkeletonCircle, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, Flex, Text, useDisclosure } from '@chakra-ui/react';
+import { Link } from "react-router-dom"; 
 import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
 import useAuthStore from "../../store/authStore";
 
 import ProfileCard from "./ProfileCard";
 import ProfilePosts from "./ProfilePosts";
-// import ProfilePosts from "./ProfilePosts";
+
+import EditProfile from "./EditProfile";
 
 const ProfilePage = () => {
 
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { username } = useParams();
 	const { isLoading, userProfile } = useGetUserProfileByUsername(username);
 
 	const authUser = useAuthStore((state) => state.user);
-	console.log(authUser)
 
 	const userNotFound = !userProfile
 	if (userNotFound) return <UserNotFound />;
@@ -22,16 +24,13 @@ const ProfilePage = () => {
 	return (
 		<div className="h-screen overflow-y-scroll bg-white">
 			<div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 lg:gap-8">
-				<div className="post p-5 lg:p-1 rounded-md">
-					<div className="lg:fixed lg:top-7 lg:left-14 lg:w-3/12 md:fixed md:w-5/12">
 						<ProfileCard />
-						{/* <ProfilePosts /> */}
-					</div>
-				</div>
+						<ProfilePosts />
 			</div>
 		</div>
-	);
-};
+			);
+		};
+
 
 export default ProfilePage;
 
