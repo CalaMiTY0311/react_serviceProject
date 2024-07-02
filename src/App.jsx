@@ -15,6 +15,7 @@ import ExploreProduct from "./pages/ExploreProducts";
 import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
 import AuthForm from "./component/Auth/Authform";
+import UserProfile from "./pages/UserProfile";
 
 // react toast
 import { Toaster } from "react-hot-toast";
@@ -43,7 +44,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/auth' element={!authUser ? <AuthForm /> : <Navigate to='/' />} />
-          {/* <Route path='/:username' element={<ProfilePage />} /> */}
+          <Route path='/:username' element={<UserProfile />} />
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />

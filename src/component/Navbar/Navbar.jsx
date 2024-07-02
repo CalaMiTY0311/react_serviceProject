@@ -4,10 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
 import SlidingCart from "./SlidingCart";
 
-//auth
-import useLogout from "../../hooks/useLogout";
-import useAuthStore from "../../store/authStore";
-
 import "./Navbar.css";
 
 function Navbar() {
@@ -47,9 +43,6 @@ function Navigations({ toggleShowCart }) {
     setIsNavOpen(!isNavOpen);
   }
 
-  const { handleLogout, isLoggingOut } = useLogout();
-	const authUser = useAuthStore((state) => state.user);
-
   return (
     <nav className={`nav container 
     ${isNavOpen ? "nav-open" : ""}`}
@@ -61,30 +54,6 @@ function Navigations({ toggleShowCart }) {
         <li className="nav-link">
           <NavLink to="/">Home</NavLink>
         </li>
-
-        {/* {authUser ? ( 
-          <>
-          <li className="nav-link">
-            {authUser.username}
-        </li>
-        <li className="nav-link">
-        <NavLink onClick={handleLogout}>Logout</NavLink>
-      </li>
-      </> ) : (
-       <li className="nav-link">
-       <NavLink to="/auth">Login</NavLink>
-     </li>
-      )} */}
-
-        {/* <li className="nav-link">
-          <NavLink to="/explore/men">Men</NavLink>
-        </li>
-        <li className="nav-link">
-          <NavLink to="/explore/women">Women</NavLink>
-        </li> */}
-        {/* <li className="nav-link">
-          <NavLink to="/auth">Login</NavLink>
-        </li> */}
         <li className="nav-link">
           <NavLink to="/explore/all">Explore All</NavLink>
         </li>

@@ -10,10 +10,15 @@ import {
 	faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
+import useUserProfileStore from "../../store/userProfileStore";
+import useAuthStore from "../../store/authStore";
+
 import NavBar from "./profileNavbar";
 
 // import INFO from "../data/user";
 // import SEO from "../data/seo";
+
+
 
 import "./styles/profilePage.css";
 
@@ -62,6 +67,10 @@ const ProfilePage = () => {
 	// 	boxShadow: stayLogo ? "0px 4px 10px rgba(0, 0, 0, 0.25)" : "none",
 	// };
 
+	const { userProfile } = useUserProfileStore();
+	const authUser = useAuthStore((state) => state.user);
+	console.log(userProfile)
+
 	return (
 		<>
 			{/* <Helmet>
@@ -101,7 +110,7 @@ const ProfilePage = () => {
 								<div className="homepage-image-container">
 									<div className="homepage-image-wrapper">
 										<img
-											src="homepage.jpg"
+											src={userProfile.profilePicURL}
 											alt="about"
 											className="homepage-image"
 										/>

@@ -14,7 +14,7 @@ const SlidingCart = ({ toggleShowCart }) => {
   let cart = useCart();
   let { addProductQuantity, removeFromCart } = useCartActions();
 
-  const { handleLogout, isLoggingOut } = useLogout();
+  // const { handleLogout, isLoggingOut } = useLogout();
 	const authUser = useAuthStore((state) => state.user);
 
   return (
@@ -56,11 +56,11 @@ function CartMain({ authUser }) {
     <div className="cart-main_container">
       { authUser ? (
         <>
-      <div className="cart-product">
+      <Link to={`/${authUser?.username}`} className="cart-product">
         <div style={{ textAlign: "center", fontSize: "1.9rem" }}>
             My Profile
          </div>
-      </div>
+      </Link>
       <div className="cart-product">
       <div style={{ textAlign: "center", fontSize: "1.9rem" }}>
           Setting
