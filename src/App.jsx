@@ -43,6 +43,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/auth' element={!authUser ? <AuthForm /> : <Navigate to='/' />} />
+          {/* <Route path='/:username' element={<ProfilePage />} /> */}
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />
