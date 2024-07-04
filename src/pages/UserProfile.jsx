@@ -8,6 +8,7 @@ const UserProfile = () => {
 
     const { username } = useParams();
 	const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+    console.log(username)
     const userNotFound = !isLoading && !userProfile;
 	if (userNotFound) return <UserNotFound />;
 

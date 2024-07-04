@@ -102,7 +102,7 @@ const ProfilePage = () => {
 
 								<div className="subtitle homepage-subtitle">
 									{/* {INFO.homepage.description} */}
-									DD
+									{userProfile.bio}
 								</div>
 							</div>
 
