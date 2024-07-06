@@ -1,0 +1,125 @@
+import React, { useRef, useState } from 'react';
+import {
+    Avatar,
+    Button,
+    Center,
+    Flex,
+    FormControl,
+    FormLabel,
+    Heading,
+    Input,
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    Stack,
+} from "@chakra-ui/react";
+
+import useAuthStore from '../../store/authStore';
+import usePreviewImg from '../../hooks/usePreviewImg';
+import useEditProfile from '../../hooks/useEditProfile';
+
+const ProfileEditor = ({ isOpen, onOpen, onClose }) => {
+
+    const [inputs, setInputs] = useState({
+        username: "",
+        bio: "",
+    });
+
+    const fileRef = useRef(null);
+    const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
+    const { isUpdating, editProfile } = useEditProfile();
+
+    const authUser = useAuthStore((state) => state.user)
+
+    const handleEditProfile = async () => {
+		try {
+			await editProfile(inputs, selectedFile);
+			setSelectedFile(null);
+			onClose();
+		} catch (error) {
+			showToast("Error", error.message, "error");
+		}
+	};
+
+    return (
+        <>
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+                size="xl"
+            >
+                <ModalOverlay />
+                <ModalContent maxW="600px" height="700px">
+                    <ModalHeader>Create your account</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody pb={6}>
+
+                        <FormControl>
+                            <Stack direction={["column", "row"]} spacing={6}>
+                                <Center>
+                                    <Avatar
+                                        size='xl'
+                                        src={
+                                            selectedFile ||
+                                            authUser.profilePicURL}
+                                        border={"2px solid white "}
+                                    />
+                                </Center>
+                                <Center w='full'>
+                                    <Button w='full'
+                                        onClick={() => fileRef.current.click()}
+                                    >
+                                        Edit Profile Picture
+                                    </Button>
+                                </Center>
+                                <Input type='file'
+                                    hidden ref={fileRef} onChange={handleImageChange} 
+                                />
+                            </Stack>
+                        </FormControl>
+
+                        <FormControl>
+                            <FormLabel>username</FormLabel>
+                            <Input placeholder='username' value={inputs.username || authUser.username} onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
+                            
+                        </FormControl>
+
+                        {/* <FormControl mt={4}>
+                            <FormLabel>edit Header</FormLabel>
+                            <Input placeholder='edit Header' />
+                        </FormControl> */}
+
+                        <FormControl>
+                            <FormLabel>edit Bio</FormLabel>
+                            <Input value={inputs.bio || authUser.bio} onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}/>
+                        </FormControl>
+
+                        <FormControl>
+                            <FormLabel>Twitter</FormLabel>
+                            <Input placeholder='Twitter url' />
+                        </FormControl>
+
+                        <FormControl>
+                            <FormLabel>Github</FormLabel>
+                            <Input placeholder='Github url' />
+                        </FormControl>
+
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={handleEditProfile}>
+                            Save
+                        </Button>
+                        <Button onClick={onClose}>Cancel</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </>
+    );
+};
+
+export default ProfileEditor;

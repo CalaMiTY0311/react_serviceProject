@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Helmet } from "react-helmet";
 
 import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,62 +9,26 @@ import {
 	faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { Button, ButtonGroup } from '@chakra-ui/react';
+import { MdBuild , MdCall } from "react-icons/md"
+
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
 
 import NavBar from "./profileNavbar";
+import ProfileEditor from './profileEditor';
 
 // import INFO from "../data/user";
 // import SEO from "../data/seo";
-
-
+import default_img from "../../assets/profile/default.jpg"
 
 import "./styles/profilePage.css";
 
 const ProfilePage = () => {
-	// const [stayLogo, setStayLogo] = useState(false);
-	// const [logoSize, setLogoSize] = useState(80);
-	// const [oldLogoSize, setOldLogoSize] = useState(80);
 
-	// useEffect(() => {
-	// 	window.scrollTo(0, 0);
-	// }, []);
-
-	// useEffect(() => {
-	// 	const handleScroll = () => {
-	// 		let scroll = Math.round(window.pageYOffset, 2);
-
-	// 		let newLogoSize = 80 - (scroll * 4) / 10;
-
-	// 		if (newLogoSize < oldLogoSize) {
-	// 			if (newLogoSize > 40) {
-	// 				setLogoSize(newLogoSize);
-	// 				setOldLogoSize(newLogoSize);
-	// 				setStayLogo(false);
-	// 			} else {
-	// 				setStayLogo(true);
-	// 			}
-	// 		} else {
-	// 			setLogoSize(newLogoSize);
-	// 			setStayLogo(false);
-	// 		}
-	// 	};
-
-	// 	window.addEventListener("scroll", handleScroll);
-	// 	return () => window.removeEventListener("scroll", handleScroll);
-	// }, [logoSize, oldLogoSize]);
-
-	// const currentSEO = SEO.find((item) => item.page === "home");
-
-	// const logoStyle = {
-	// 	display: "flex",
-	// 	position: stayLogo ? "fixed" : "relative",
-	// 	top: stayLogo ? "3vh" : "auto",
-	// 	zIndex: 999,
-	// 	border: stayLogo ? "1px solid white" : "none",
-	// 	borderRadius: stayLogo ? "50%" : "none",
-	// 	boxShadow: stayLogo ? "0px 4px 10px rgba(0, 0, 0, 0.25)" : "none",
-	// };
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const onOpen = () => setIsModalOpen(true);
+  	const onClose = () => setIsModalOpen(false);
 
 	const { userProfile } = useUserProfileStore();
 	const authUser = useAuthStore((state) => state.user);
@@ -95,76 +58,54 @@ const ProfilePage = () => {
 					<div className="homepage-container">
 						<div className="homepage-first-area">
 							<div className="homepage-first-area-left-side">
+							<br/><br/><br/><br/><br/><br/>
 								<div className="title homepage-title">
 									{/* {INFO.homepage.title} */}
-									DD
+									{userProfile.username}
 								</div>
 
 								<div className="subtitle homepage-subtitle">
 									{/* {INFO.homepage.description} */}
-									{userProfile.bio}
+									{userProfile.bio ? (
+									<>{userProfile.bio}</>
+								) : (
+									<div>please Add Comment</div>
+								)}
 								</div>
 							</div>
 
 							<div className="homepage-first-area-right-side">
 								<div className="homepage-image-container">
 									<div className="homepage-image-wrapper">
-										<img
+										{ userProfile.profilePicURL ? (
+											<img
 											src={userProfile.profilePicURL}
 											alt="about"
 											className="homepage-image"
+											style={{ width: "300px", height: "300px", objectFit: "cover" }}
 										/>
+										) : (
+											<img
+											src={default_img}
+											alt="about"
+											className="homepage-image"
+										/>
+										) }
+										{/* <img
+											src={userProfile.profilePicURL}
+											alt="about"
+											className="homepage-image"
+										/> */}
 									</div>
 								</div>
 							</div>
 						</div>
-						
+					
 						<div className="homepage-socials">
-							<a
-								target="_blank"
-								rel="noreferrer"
-							>
-								<FontAwesomeIcon
-									icon={faTwitter}
-									className="homepage-social-icon"
-								/>
-							</a>
-							<a
-								target="_blank"
-								rel="noreferrer"
-							>
-								<FontAwesomeIcon
-									icon={faGithub}
-									className="homepage-social-icon"
-								/>
-							</a>
-							<a
-								target="_blank"
-								rel="noreferrer"
-							>
-								<FontAwesomeIcon
-									icon={faStackOverflow}
-									className="homepage-social-icon"
-								/>
-							</a>
-							<a
-								target="_blank"
-								rel="noreferrer"
-							>
-								<FontAwesomeIcon
-									icon={faInstagram}
-									className="homepage-social-icon"
-								/>
-							</a>
-							<a
-								target="_blank"
-								rel="noreferrer"
-							>
-								<FontAwesomeIcon
-									icon={faMailBulk}
-									className="homepage-social-icon"
-								/>
-							</a>
+						<Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+    						Settings
+  						</Button>
+						<ProfileEditor isOpen={isModalOpen} onOpen={onOpen} onClose={onClose} />
 						</div>
 
 						<div className="homepage-socials">
@@ -222,7 +163,7 @@ const ProfilePage = () => {
 
 						{/* <div className="homepage-projects">
 							<AllProjects />
-						</div> */}
+						</div> */}<br/><br/><br/><br/><br/><br/><br/>
 					</div>
 				</div>
 			</div>
