@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
     Avatar,
     Button,
@@ -21,8 +21,13 @@ import {
 import useAuthStore from '../../store/authStore';
 import usePreviewImg from '../../hooks/usePreviewImg';
 import useEditProfile from '../../hooks/useEditProfile';
+import useShowToast from "../../hooks/useShowToast";
 
-const ProfileEditor = ({ isOpen, onOpen, onClose }) => {
+import { useNavigate } from 'react-router-dom';
+
+const ProfileEditor = ({ isOpen, onClose }) => {
+
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
         username: "",
@@ -32,14 +37,18 @@ const ProfileEditor = ({ isOpen, onOpen, onClose }) => {
     const fileRef = useRef(null);
     const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
     const { isUpdating, editProfile } = useEditProfile();
-
     const authUser = useAuthStore((state) => state.user)
+    const showToast = useShowToast();
+
 
     const handleEditProfile = async () => {
 		try {
 			await editProfile(inputs, selectedFile);
 			setSelectedFile(null);
 			onClose();
+            navigate(`/`);
+
+
 		} catch (error) {
 			showToast("Error", error.message, "error");
 		}
@@ -111,7 +120,7 @@ const ProfileEditor = ({ isOpen, onOpen, onClose }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={handleEditProfile}>
+                        <Button colorScheme='blue' mr={3} onClick={handleEditProfile} isLoading={isUpdating}>
                             Save
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>

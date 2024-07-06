@@ -24,17 +24,6 @@ import { Toaster } from "react-hot-toast";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase-config";
 
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route element={<RootLayout />}>
-//       <Route index element={<Home />} />
-//       <Route path="/explore/:category" element={<ExploreProduct />}></Route>
-//       <Route path="/product/:productId" element={<Product />}></Route>
-//       <Route path="/checkout" element={<Checkout />}></Route>
-//     </Route>
-//   )
-// );
-
 function App() {
 
   const [authUser] = useAuthState(auth);

@@ -36,10 +36,11 @@ const useEditProfile = () => {
 				bio: inputs.bio || authUser.bio,
 				profilePicURL: URL || authUser.profilePicURL,
 			};
-
+			console.log(updatedUser)
 			await updateDoc(userDocRef, updatedUser);
 			localStorage.setItem("user-info", JSON.stringify(updatedUser));
 			setAuthUser(updatedUser);
+			// console.log("Updated authUser:", useAuthStore.getState().user);
 			setUserProfile(updatedUser);
 			showToast("Success", "Profile updated successfully", "success");
 		} catch (error) {

@@ -11,6 +11,7 @@ import {
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { MdBuild , MdCall } from "react-icons/md"
+import { SlUserFollow } from "react-icons/sl";
 
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
@@ -32,7 +33,10 @@ const ProfilePage = () => {
 
 	const { userProfile } = useUserProfileStore();
 	const authUser = useAuthStore((state) => state.user);
-	console.log(userProfile)
+	const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
+	console.log(authUser, authUser.username, userProfile.username)
+	const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
+	console.log(visitingAnotherProfileAndAuth)
 
 	return (
 		<>
@@ -49,6 +53,7 @@ const ProfilePage = () => {
 				<NavBar active="home" />
 				<br/><br/><br/><br/><br/>
 				<div className="content-wrapper">
+
 					{/* <div className="homepage-logo-container">
 						<div style={logoStyle}>
 							<Logo width={logoSize} link={false} />
@@ -60,12 +65,10 @@ const ProfilePage = () => {
 							<div className="homepage-first-area-left-side">
 							<br/><br/><br/><br/><br/><br/>
 								<div className="title homepage-title">
-									{/* {INFO.homepage.title} */}
 									{userProfile.username}
 								</div>
 
 								<div className="subtitle homepage-subtitle">
-									{/* {INFO.homepage.description} */}
 									{userProfile.bio ? (
 									<>{userProfile.bio}</>
 								) : (
@@ -91,21 +94,29 @@ const ProfilePage = () => {
 											className="homepage-image"
 										/>
 										) }
-										{/* <img
-											src={userProfile.profilePicURL}
-											alt="about"
-											className="homepage-image"
-										/> */}
 									</div>
 								</div>
 							</div>
 						</div>
 					
 						<div className="homepage-socials">
-						<Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
-    						Settings
-  						</Button>
-						<ProfileEditor isOpen={isModalOpen} onOpen={onOpen} onClose={onClose} />
+							{ visitingOwnProfileAndAuth ? (
+								<Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+    								Settings
+  								</Button>
+							) : (
+								<></>
+							) }
+							{ visitingAnotherProfileAndAuth ? (
+								<Button leftIcon={<SlUserFollow />} colorScheme='green' variant='solid'>
+									Follow
+							  </Button>
+							) : (
+								<></>
+							) }
+							{/* <Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+    							Settings
+  							</Button> */}
 						</div>
 
 						<div className="homepage-socials">
@@ -163,9 +174,11 @@ const ProfilePage = () => {
 
 						{/* <div className="homepage-projects">
 							<AllProjects />
-						</div> */}<br/><br/><br/><br/><br/><br/><br/>
+						</div> */}
+						<br/><br/><br/><br/><br/><br/><br/>
 					</div>
 				</div>
+				<ProfileEditor isOpen={isModalOpen} onOpen={onOpen} onClose={onClose} />
 			</div>
 			</>
 	);

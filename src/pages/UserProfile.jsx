@@ -1,36 +1,43 @@
 import React from "react";
 import ProfilePage from "../component/profile/profilePage";
 import useGetUserProfileByUsername from "../hooks/useGetUserProfileByUsername";
+import { Flex, Text } from "@chakra-ui/react";
 import { Link ,useParams } from "react-router-dom";
 import "./UserProfile.css";
 
 const UserProfile = () => {
 
-    const { username } = useParams();
+  const { username } = useParams();
 	const { isLoading, userProfile } = useGetUserProfileByUsername(username);
-    console.log(username)
     const userNotFound = !isLoading && !userProfile;
 	if (userNotFound) return <UserNotFound />;
 
   return (
     <div>
         {!isLoading && userProfile && <ProfilePage />}
+		{isLoading && <Profilewait />}
     </div>
   );
 }
 
 export default UserProfile;
 
+const Profilewait = () => {
+	return (
+		<div>wait</div>
+	);
+};
+
 const UserNotFound = () => {
 	return (
-		// <Flex flexDir='column' textAlign={"center"} mx={"auto"}>
-		// 	<Text fontSize={"2xl"}>User Not Found</Text>
-		// 	<Link as={RouterLink} to={"/"} color={"blue.500"} w={"max-content"} mx={"auto"}>
-		// 		Go home
-		// 	</Link>
-		// </Flex>
-        <Link to='/'>
+		<Flex flexDir='column' textAlign={"center"} mx={"auto"}>
+			<Text fontSize={"2xl"}>User Not Found</Text>
+			<Link to={"/"} color={"blue.500"} w={"max-content"} mx={"auto"}>
+				Go home
+			</Link>
+		</Flex>
+        // <Link to='/'>
 
-        </Link>
+        // </Link>
 	);
 };
