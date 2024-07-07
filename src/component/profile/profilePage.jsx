@@ -23,6 +23,8 @@ import ProfileEditor from './profileEditor';
 // import SEO from "../data/seo";
 import default_img from "../../assets/profile/default.jpg"
 
+import useFollowUser from "../../hooks/useFollowUser";
+
 import "./styles/profilePage.css";
 
 const ProfilePage = () => {
@@ -37,6 +39,7 @@ const ProfilePage = () => {
 	console.log(authUser, authUser.username, userProfile.username)
 	const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
 	console.log(visitingAnotherProfileAndAuth)
+	const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(userProfile?.uid);
 
 	return (
 		<>
@@ -101,15 +104,24 @@ const ProfilePage = () => {
 					
 						<div className="homepage-socials">
 							{ visitingOwnProfileAndAuth ? (
-								<Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+								<Button onClick={onOpen} 
+								leftIcon={<MdBuild />} 
+								colorScheme='pink' 
+								variant='solid'>
     								Settings
   								</Button>
 							) : (
 								<></>
 							) }
 							{ visitingAnotherProfileAndAuth ? (
-								<Button leftIcon={<SlUserFollow />} colorScheme='green' variant='solid'>
-									Follow
+								<Button 
+								leftIcon={<SlUserFollow />} 
+								colorScheme='green' 
+								variant='solid'
+								onClick={handleFollowUser}
+								isLoading={isUpdating}
+								>
+									{isFollowing ? "Unfollow" : "Follow"}
 							  </Button>
 							) : (
 								<></>
