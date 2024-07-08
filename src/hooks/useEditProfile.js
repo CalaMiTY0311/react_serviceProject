@@ -39,10 +39,11 @@ const useEditProfile = () => {
 			console.log(updatedUser)
 			await updateDoc(userDocRef, updatedUser);
 			localStorage.setItem("user-info", JSON.stringify(updatedUser));
-			setAuthUser(updatedUser);
-			// console.log("Updated authUser:", useAuthStore.getState().user);
+			setAuthUser(updatedUser);	
 			setUserProfile(updatedUser);
 			showToast("Success", "Profile updated successfully", "success");
+
+			setIsUpdating(false);
 		} catch (error) {
 			showToast("Error", error.message, "error");
 		}

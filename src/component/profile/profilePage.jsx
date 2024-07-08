@@ -36,9 +36,7 @@ const ProfilePage = () => {
 	const { userProfile } = useUserProfileStore();
 	const authUser = useAuthStore((state) => state.user);
 	const visitingOwnProfileAndAuth = authUser && authUser.username === userProfile.username;
-	console.log(authUser, authUser.username, userProfile.username)
 	const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
-	console.log(visitingAnotherProfileAndAuth)
 	const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(userProfile?.uid);
 
 	return (

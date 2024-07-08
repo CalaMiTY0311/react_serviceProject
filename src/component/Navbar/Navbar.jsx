@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useCart } from "../../store/Store";
 import { Link, NavLink } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
-import SlidingCart from "./SlidingCart";
+// import SlidingCart from "./AuthBar";
 
 import "./Navbar.css";
+import AuthBar from "./AuthBar";
 
 function Navbar() {
   const [showCart, setShowCart] = useState(false);
@@ -15,7 +16,7 @@ function Navbar() {
   return (
     <header className={`header ${showCart ? "visible" : ""}`}>
       <Navigations toggleShowCart={toggleShowCart} />
-      <SlidingCart toggleShowCart={toggleShowCart} />
+      <AuthBar toggleShowCart={toggleShowCart} />
       <CartSliderOverlay />
     </header>
   );
@@ -56,6 +57,9 @@ function Navigations({ toggleShowCart }) {
         </li>
         <li className="nav-link">
           <NavLink to="/explore/all">Explore All</NavLink>
+        </li>
+        <li className="nav-link">
+          <NavLink to="/models/all">Models</NavLink>
         </li>
       </ul>
       <div className="nav-secondary_btn" onClick={handleOpenNavigation}>

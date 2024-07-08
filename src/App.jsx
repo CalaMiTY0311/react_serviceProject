@@ -1,10 +1,8 @@
 // react router
 import { BrowserRouter,
-  Route, Routes,Router,
+  Route, Routes,
   Navigate,
-  createRoutesFromElements,
-  createBrowserRouter,
-  RouterProvider,
+
 } from "react-router-dom";
 
 // layout
@@ -13,13 +11,13 @@ import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import ExploreProduct from "./pages/ExploreProducts";
 import Product from "./pages/Product";
-import Checkout from "./pages/Checkout";
+import ModelPosts from "./pages/ModelPosts";
+// import Checkout from "./pages/Checkout";
 import AuthForm from "./component/Auth/Authform";
 import UserProfile from "./pages/UserProfile";
 
 // react toast
-import { Toaster } from "react-hot-toast";
-
+import { Toaster } from "react-hot-toast"
 // auth state check
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase-config";
@@ -33,12 +31,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/auth' element={!authUser ? <AuthForm /> : <Navigate to='/' />} />
-          <Route path='/:username' element={<UserProfile />} />
+          <Route path='/profile/:username' element={<UserProfile />} />
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/models/:category" element={<ModelPosts />} />
+            {/* <Route path="/checkout" element={<Checkout />} /> */}
           </Route>
         </Routes>
         <Toaster

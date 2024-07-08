@@ -44,11 +44,9 @@ const ProfileEditor = ({ isOpen, onClose }) => {
     const handleEditProfile = async () => {
 		try {
 			await editProfile(inputs, selectedFile);
-			setSelectedFile(null);
+            setSelectedFile(null);
 			onClose();
             navigate(`/`);
-
-
 		} catch (error) {
 			showToast("Error", error.message, "error");
 		}
@@ -93,18 +91,17 @@ const ProfileEditor = ({ isOpen, onClose }) => {
 
                         <FormControl>
                             <FormLabel>username</FormLabel>
-                            <Input placeholder='username' value={inputs.username || authUser.username} onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
+                            <Input placeholder={inputs.username || authUser.username}
+                             value={inputs.username || authUser.username} 
+                             onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
                             
                         </FormControl>
 
-                        {/* <FormControl mt={4}>
-                            <FormLabel>edit Header</FormLabel>
-                            <Input placeholder='edit Header' />
-                        </FormControl> */}
-
                         <FormControl>
                             <FormLabel>edit Bio</FormLabel>
-                            <Input value={inputs.bio || authUser.bio} onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}/>
+                            <Input placeholder={inputs.bio || authUser.bio} 
+                            value={inputs.bio || authUser.bio} 
+                            onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}/>
                         </FormControl>
 
                         <FormControl>
