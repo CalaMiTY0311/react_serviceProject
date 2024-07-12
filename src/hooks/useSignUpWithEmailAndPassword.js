@@ -11,6 +11,7 @@ const useSignUpWithEmailAndPassword = () => {
 	const loginUser = useAuthStore((state) => state.login);
 
 	const signup = async (register) => {
+		console.log(register)
 		if (!register.email || !register.password || !register.username ) {
 			showToast("Error", "Please fill all the fields", "error");
 			return;

@@ -13,7 +13,9 @@ import ExploreProduct from "./pages/ExploreProducts";
 import Product from "./pages/Product";
 import ModelPosts from "./pages/ModelPosts";
 // import Checkout from "./pages/Checkout";
-import AuthForm from "./component/Auth/Authform";
+import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
+
 import UserProfile from "./pages/UserProfile";
 
 // react toast
@@ -30,7 +32,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/auth' element={!authUser ? <AuthForm /> : <Navigate to='/' />} />
+          {/* Auth */}
+          <Route path='/login' element={!authUser ? <Login /> : <Navigate to='/' />} />
+          <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to='/' />} />
+
           <Route path='/profile/:username' element={<UserProfile />} />
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />

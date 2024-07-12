@@ -1,68 +1,50 @@
 import react, { useState } from "react";
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-} from "@material-tailwind/react";
-import { Button } from "@material-tailwind/react";
+  Button,
+  Checkbox,
+  Flex,
+  Text,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack,
+  Image,
+} from '@chakra-ui/react'
 
 import Signup from "./Signup";
+import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword";
+
 import Login from "./Login";
+import useLogin from "../../hooks/useLogin";
 import GoogleAuth from "./GoogleAuth";
 
 const AuthForm = () => {
 
   const [isLogin, setIsLogin] = useState(true);
 
+  const handleForm = () => {
+    setIsLogin((isLogin) => !isLogin);
+  };
+
+  const { loginLoading, loginError, login } = useLogin();
+  const { signupLoading, signupError, signup } = useSignUpWithEmailAndPassword();
+
   return (
-    <div className="grid grid-cols-1 items-center justify-items-center h-screen">
-      <Card className="w-96">
-        <CardHeader
-          variant="gradient"
-          color="blue"
-          className="mb-4 grid h-28 place-items-center"
-        >
-          <Typography variant="h3" color="white">
-            Sign In
-          </Typography>
-        </CardHeader>
+    <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+          <Login />
 
-        {isLogin ? (
-          <div>
-            <Login />
-            <CardBody>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => setIsLogin(false)}
-              >
-                Don't have an account?
-              </Button>
-              <GoogleAuth />
-            </CardBody>
-          </div>
 
-        ) : (
-
-          <div>
-            <Signup />
-            <CardBody>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => setIsLogin(true)}
-              >
-                Have an account?
-              </Button>
-              <GoogleAuth />
-            </CardBody>
-          </div>
-        )}
-
-      </Card>
-    </div>
+          <Flex flex={1}>
+            <Image
+              alt={'Login Image'}
+              objectFit={'cover'}
+              src={
+                'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
+              }
+            />
+          </Flex>
+        </Stack>
   )
 }
 export default AuthForm;

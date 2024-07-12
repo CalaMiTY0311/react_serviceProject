@@ -83,8 +83,8 @@ function BottomBar({ authUser }) {
           Logout
       </Link>
       ) : (
-        <Link to="/auth">
-          Login
+        <Link to="/login">
+          Login / Signup
       </Link>
       )}
       {/* <Link to="checkout" onClick={toggleShowCart}>
