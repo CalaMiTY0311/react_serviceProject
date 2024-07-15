@@ -12,6 +12,7 @@ import {
   Image,
 } from '@chakra-ui/react'
 import { Link } from "react-router-dom";
+import GoogleAuth from "./GoogleAuth";
 
 import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword";
 
@@ -70,6 +71,7 @@ const Signup = () => {
             <Button colorScheme={'blue'} variant={'solid'} onClick={() => signup(register)}>
               Sign in
             </Button>
+            <GoogleAuth />
           </Stack>
         </Stack>
       </Flex>

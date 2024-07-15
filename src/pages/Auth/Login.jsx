@@ -16,7 +16,8 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
-``
+import GoogleAuth from './GoogleAuth';
+
 const Login = () => {
 
   const [inputs, setInputs] = useState({
@@ -58,9 +59,10 @@ const Login = () => {
               </Link>
               <Text color={'blue.500'}>Forgot password?</Text>
             </Stack>
-            <Button colorScheme={'blue'} variant={'solid'} onClick={login}>
+            <Button colorScheme={'blue'} variant={'solid'} onClick={() => login(inputs)}>
               Sign in
             </Button>
+            <GoogleAuth />
           </Stack>
         </Stack>
       </Flex>

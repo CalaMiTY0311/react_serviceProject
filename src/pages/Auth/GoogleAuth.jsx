@@ -1,9 +1,12 @@
-import { Button, CardBody } from "@material-tailwind/react";
+import { Button, Center, Text } from '@chakra-ui/react';
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth, firestore } from "../../config/firebase-config";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
 
 const GoogleAuth = ({ prefix }) => {
     const [signInWithGoogle, , , error] = useSignInWithGoogle(auth);
@@ -50,19 +53,11 @@ const GoogleAuth = ({ prefix }) => {
     };
 
     return (
-        // <CardBody className="flex flex-col gap-4">
-            <Button
-                size="lg"
-                variant="outlined"
-                fullWidth
-                color="blue-gray"
-                className="flex items-center gap-3"
-                onClick={handleGoogleAuth}
-            >
-                <img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" className="h-6 w-6" />
-                { prefix } Continue with Google
-            </Button>
-        // </CardBody>
+        <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
+          <Center>
+            <Text>Sign in with Google</Text>
+          </Center>
+        </Button>
     );
 };
 
