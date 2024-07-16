@@ -13,6 +13,7 @@ const ModelPosts = () => {
     const [checkBoxState, setCheckBoxState] = useState({
         men: false,
         women: false,
+        vTuber: false,
       });
 
       function handlePriceFilter(e) {
@@ -31,7 +32,7 @@ const ModelPosts = () => {
         }
         setPriceFilter(filter);
       }
-      
+
       function handleCategoryCheckBox(e) {
         let { name, checked } = e.target;
         setCheckBoxState({ ...checkBoxState, [name]: checked });

@@ -2,7 +2,7 @@
 import { BrowserRouter,
   Route, Routes,
   Navigate,
-
+  // Switch
 } from "react-router-dom";
 
 // layout
@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import ExploreProduct from "./pages/ExploreProducts";
 import Product from "./pages/Product";
 import ModelPosts from "./pages/ModelPosts";
-// import Checkout from "./pages/Checkout";
+import Checkout from "./pages/Checkout";
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 
@@ -33,16 +33,17 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Auth */}
+          {/* <Switch> */}
           <Route path='/login' element={!authUser ? <Login /> : <Navigate to='/' />} />
           <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to='/' />} />
-
+          {/* </Switch> */}
           <Route path='/profile/:username' element={<UserProfile />} />
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/models/:category" element={<ModelPosts />} />
-            {/* <Route path="/checkout" element={<Checkout />} /> */}
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
         </Routes>
         <Toaster
