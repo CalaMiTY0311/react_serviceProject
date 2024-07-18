@@ -12,7 +12,8 @@ import {
   Input,
   Stack,
   Image,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+
 
 function SelectCategory({ checkBoxState, handleCheckBox }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,6 @@ function SelectCategory({ checkBoxState, handleCheckBox }) {
           <label htmlFor="category-women">Women</label>
         </span>
       </div>
-      <Button w={'full'} colorScheme='gray' height='48px'>Post</Button>
     </div>
   );
 }

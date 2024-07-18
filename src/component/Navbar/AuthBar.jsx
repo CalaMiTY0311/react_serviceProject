@@ -16,6 +16,7 @@ const AuthBar = ({ toggleShowCart }) => {
       toggleShowCart={toggleShowCart} 
       authUser={authUser} />
       <MainBar
+        toggleShowCart={toggleShowCart}
         authUser={authUser}
       />
       <BottomBar
@@ -43,7 +44,7 @@ const TopBar = ({ toggleShowCart,authUser }) => {
   );
 }
 
-function MainBar({ authUser }) {
+function MainBar({ toggleShowCart, authUser }) {
 
   return (
     <div className="cart-main_container">
@@ -59,6 +60,11 @@ function MainBar({ authUser }) {
           Setting
        </div>
     </div>
+    <Link to='/modelPost' className="cart-product" onClick={toggleShowCart}>
+        <div style={{ textAlign: "center", fontSize: "1.9rem" }}>
+            Model Post
+         </div>
+      </Link>
     </>
     ) : (
       <div className="cart-product">

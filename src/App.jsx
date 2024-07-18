@@ -11,8 +11,8 @@ import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import ExploreProduct from "./pages/ExploreProducts";
 import Product from "./pages/Product";
-import ModelPosts from "./pages/ModelPosts";
-import Checkout from "./pages/Checkout";
+import ModelsPage from "./pages/ModelsPage";
+import ModelPost from "./pages/ModelPost";
 import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 
@@ -42,8 +42,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="/models/:category" element={<ModelPosts />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/models/:category" element={<ModelsPage />} />
+            <Route path="/modelPost" element={<ModelPost />} />
           </Route>
         </Routes>
         <Toaster

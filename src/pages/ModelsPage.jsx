@@ -3,7 +3,7 @@ import ProductCard from "../component/explore/ProductCard";
 import fetchFromApi from "../utils/fetchFromApi";
 import SelectCategory from "../component/explore/SelectCategory";
 import PriceFilter from "../component/explore/PriceFilter";
-import "./ModelPosts.css";
+import "./ModelsPage.css";
 import { useParams } from "react-router-dom";
 import Shimmer from "../component/shimmer/Shimmer";
 
