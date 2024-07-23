@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SelectCategory.css";
+import "./CategoryFilter.css";
 
 import {
   Button,

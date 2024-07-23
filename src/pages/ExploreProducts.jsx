@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../component/explore/ProductCard";
 import fetchFromApi from "../utils/fetchFromApi";
-import SelectCategory from "../component/explore/SelectCategory";
+import CategoryFilter from "../component/explore/CategoryFilter";
 import PriceFilter from "../component/explore/PriceFilter";
 import "./ExploreProducts.css";
 import { useParams } from "react-router-dom";
