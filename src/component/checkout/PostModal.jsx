@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -12,15 +12,19 @@ import {
   Stack,
   Box,
   Image,
-  Center
+  Input,
+  Center,
 } from "@chakra-ui/react";
 
 import SelectCategory from "./SelectCategory";
 import { useDisclosure } from "@chakra-ui/react";
-const ModalForm = ({ category, handleSelectCategory }) => {
+import usePreviewImg from "../../hooks/usePreviewImg";
+const ModalForm = ({ category, handleSelectCategory, imgRef }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const finalRef = React.useRef(null)
+    const imageRef = useRef(null)
+    const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
   
     return (
       <>
@@ -48,14 +52,39 @@ const ModalForm = ({ category, handleSelectCategory }) => {
               </Box>
               <Stack direction={["column", "row"]} spacing={6}>
                 <Center>
-                  <Image boxSize='200px' src='https://bit.ly/dan-abramov' alt='Dan Abramov' />
+                  {/* <Image boxSize='200px' src='https://bit.ly/dan-abramov' alt='Dan Abramov' />*/}
+
+                  {selectedFile && (
+							// <Flex mt={5} w={"full"} position={"relative"} justifyContent={"center"}>
+              <>
+								<Image boxSize='200px' src={selectedFile} alt='Dan Abramov' />
+								{/* <CloseButton
+									position={"absolute"}
+									top={2}
+									right={2}
+									onClick={() => {
+										setSelectedFile(null);
+									}}
+								/> */}
+                </>
+							// </Flex>
+						)}
+
                 </Center>
                 <Center>
+                <Input type='file' hidden ref={imageRef} onChange={handleImageChange} />
                   <Button
-                    onClick={() => fileRef.current.click()}
+                    onClick={() => imageRef.current.click()}
                   >
                     Edit Profile Picture
                   </Button>
+                  {selectedFile && (
+                  <Button
+									onClick={() => {
+										setSelectedFile(null);
+									}}>X</Button>
+
+                )}
                 </Center>
               </Stack>
             </ModalBody>

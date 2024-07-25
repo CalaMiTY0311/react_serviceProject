@@ -1,55 +1,58 @@
-import React, { useState } from "react";
-import "./modelPostForm.css";
+import React, { useRef } from "react";
+import "./PostForm.css";
+
+import usePreviewImg from "../../hooks/usePreviewImg";
+
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
-import ModalForm from "./ModalForm";
+import ModalForm from "./PostModal";
 
 import {
   Input, Textarea,
 } from "@chakra-ui/react";
 
-function ModelPostForm() {
+function PostForm({inputs, setInputs, category, handleSelectCategory, handleCreatePost}) {
 
-  const [inputs, setInputs] = useState({
-    title: "",
-    body: "",
-});
+//   const [inputs, setInputs] = useState({
+//     title: "",
+//     body: "",
+// });
 
-  const [category, setCategory] = useState({
-    gender: {
-      Male: false,
-      Female: false,
-      Other: false,
-    },
-    categories: {
-      Vtuber: false,
-      Actor: false,
-    }
-  });
+  // const [category, setCategory] = useState({
+  //   gender: {
+  //     Male: false,
+  //     Female: false,
+  //     Other: false,
+  //   },
+  //   categories: {
+  //     Vtuber: false,
+  //     Actor: false,
+  //   }
+  // });
 
-  const handleSelectCategory = (type, name) => {
-    setCategory(prevState => ({
-      ...prevState,
-      [type]: {
-        ...prevState[type],
-        [name]: !prevState[type][name]
-      }
-    }));
-  };
+  // const handleSelectCategory = (type, name) => {
+  //   setCategory(prevState => ({
+  //     ...prevState,
+  //     [type]: {
+  //       ...prevState[type],
+  //       [name]: !prevState[type][name]
+  //     }
+  //   }));
+  // };
 
-  const handleCreatePost = () => {
-    const newPost = {
-      title: inputs.title,
-      body: inputs.body,
-      likes: [],
-      comments: [],
-      category: category,
-      createdAt: Date.now(),
-      // createdBy: authUser.uid,
-    };
-    console.log(newPost)
-  }
+  // const handleCreatePost = () => {
+  //   const newPost = {
+  //     title: inputs.title,
+  //     body: inputs.body,
+  //     likes: [],
+  //     comments: [],
+  //     category: category,
+  //     createdAt: Date.now(),
+  //     // createdBy: authUser.uid,
+  //   };
+  //   console.log(newPost)
+  // }
 
   return (
     <>
@@ -62,7 +65,6 @@ function ModelPostForm() {
       <ModalForm 
       category={category}
       handleSelectCategory={handleSelectCategory}
-      // onCategorySave={handleCategorySave}
       />
       <div className="shipping-address_container">
         <h3>Shipping Address</h3>
@@ -88,4 +90,4 @@ function ModelPostForm() {
 
 
 
-export default ModelPostForm;
+export default PostForm;
