@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./PostForm.css";
 
 import usePreviewImg from "../../hooks/usePreviewImg";
@@ -6,53 +6,34 @@ import usePreviewImg from "../../hooks/usePreviewImg";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
+import { ChakraProvider, Box, Heading, List, ListItem, Text } from '@chakra-ui/react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 import ModalForm from "./PostModal";
 
 import {
   Input, Textarea,
 } from "@chakra-ui/react";
 
+const initialItems = [
+  { id: '1', content: 'Item 1' },
+  { id: '2', content: 'Item 2' },
+  { id: '3', content: 'Item 3' },
+];
+
 function PostForm({inputs, setInputs, category, handleSelectCategory, handleCreatePost}) {
 
-//   const [inputs, setInputs] = useState({
-//     title: "",
-//     body: "",
-// });
+  const [items, setItems] = useState(initialItems);
 
-  // const [category, setCategory] = useState({
-  //   gender: {
-  //     Male: false,
-  //     Female: false,
-  //     Other: false,
-  //   },
-  //   categories: {
-  //     Vtuber: false,
-  //     Actor: false,
-  //   }
-  // });
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
 
-  // const handleSelectCategory = (type, name) => {
-  //   setCategory(prevState => ({
-  //     ...prevState,
-  //     [type]: {
-  //       ...prevState[type],
-  //       [name]: !prevState[type][name]
-  //     }
-  //   }));
-  // };
+    const reorderedItems = Array.from(items);
+    const [reorderedItem] = reorderedItems.splice(result.source.index, 1);
+    reorderedItems.splice(result.destination.index, 0, reorderedItem);
 
-  // const handleCreatePost = () => {
-  //   const newPost = {
-  //     title: inputs.title,
-  //     body: inputs.body,
-  //     likes: [],
-  //     comments: [],
-  //     category: category,
-  //     createdAt: Date.now(),
-  //     // createdBy: authUser.uid,
-  //   };
-  //   console.log(newPost)
-  // }
+    setItems(reorderedItems);
+  };
 
   return (
     <>
