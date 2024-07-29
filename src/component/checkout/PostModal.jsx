@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -14,12 +14,32 @@ import {
   Image,
   Input,
   Center,
+  Text,
+  Radio,
 } from "@chakra-ui/react";
 
 import SelectCategory from "./SelectCategory";
 import { useDisclosure } from "@chakra-ui/react";
 import usePreviewImg from "../../hooks/usePreviewImg";
 const ModalForm = ({ category, handleSelectCategory, imgRef }) => {
+
+  const [files, setFiles] = useState([]);
+
+const handleFilesChange = (e) => {
+  const selectedFiles = Array.from(e.target.files);
+  setFiles(selectedFiles);
+  console.log("files : ", selectedFiles);
+}
+// const handleTest= () => {
+//   console.log("files : ", files)
+// }
+
+const [isInsideActive, setIsInsideActive] = useState(true);
+
+
+  const clickedToggle = () => {
+    setIsInsideActive((prev) => !prev);
+  };
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const finalRef = React.useRef(null)
@@ -32,12 +52,13 @@ const ModalForm = ({ category, handleSelectCategory, imgRef }) => {
         <Button mt={4} onClick={onOpen}>
           Open Modal
         </Button>
-        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      
+        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size="xs">
           <ModalOverlay />
-          <ModalContent maxW="80vw" maxH="80vh"> {/* 모달 크기 조정 */}
-            <ModalHeader fontSize="2xl">Modal Title</ModalHeader> {/* 폰트 크기 조정 */}
+          <ModalContent maxW="80vw" maxH="80vh">
+            <ModalHeader fontSize="2xl">Modal Title</ModalHeader> 
             <ModalCloseButton />
-            <ModalBody fontSize="lg"> {/* 폰트 크기 조정 */}
+            <ModalBody fontSize="lg">
               Tag
               <Divider my={4} />
               <Stack spacing={4}>
@@ -47,27 +68,55 @@ const ModalForm = ({ category, handleSelectCategory, imgRef }) => {
               </Stack>
   
               <Divider my={4} />
+              <br />
+
+
+              <Stack direction="row" spacing={5}>
+              <Radio
+        isChecked={isInsideActive}
+        size='lg'
+        onChange={clickedToggle}
+      >
+        inside
+      </Radio>
+      <Radio
+        isChecked={!isInsideActive}
+        size='lg'
+        onChange={clickedToggle}
+      >
+        outside
+      </Radio>
+      </Stack>
+      <br />
+      
+              <Text mb='8px'>Download URL </Text>
+      <Input
+        placeholder='Here is a sample placeholder'
+        size='sm'
+      />
+
+<form>
+          <input 
+            className='file-input'
+            type="file"
+						// mulitple
+            onChange={handleFilesChange}
+          />
+          {/* <button onClick={handleTest}>upload</button> */}
+        </form>
+
+      <br /><br />
               <Box>
-                <h1>Post Avatar</h1>
+                Display Image
               </Box>
               <Stack direction={["column", "row"]} spacing={6}>
                 <Center>
-                  {/* <Image boxSize='200px' src='https://bit.ly/dan-abramov' alt='Dan Abramov' />*/}
-
                   {selectedFile && (
 							// <Flex mt={5} w={"full"} position={"relative"} justifyContent={"center"}>
               <>
 								<Image boxSize='200px' src={selectedFile} alt='Dan Abramov' />
-								{/* <CloseButton
-									position={"absolute"}
-									top={2}
-									right={2}
-									onClick={() => {
-										setSelectedFile(null);
-									}}
-								/> */}
-                </>
-							// </Flex>
+								{}
+            </>
 						)}
 
                 </Center>
