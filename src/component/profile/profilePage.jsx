@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { Button, ButtonGroup } from '@chakra-ui/react';
-import { MdBuild , MdCall } from "react-icons/md"
+import { MdBuild, MdCall } from "react-icons/md"
 import { SlUserFollow } from "react-icons/sl";
 
 import useUserProfileStore from "../../store/userProfileStore";
@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const onOpen = () => setIsModalOpen(true);
-  	const onClose = () => setIsModalOpen(false);
+	const onClose = () => setIsModalOpen(false);
 
 	const { userProfile } = useUserProfileStore();
 	const authUser = useAuthStore((state) => state.user);
@@ -54,7 +54,7 @@ const ProfilePage = () => {
 
 			<div className="page-content">
 				<NavBar active="home" />
-				<br/><br/><br/><br/><br/>
+				<br /><br /><br /><br /><br />
 				<div className="content-wrapper">
 
 					{/* <div className="homepage-logo-container">
@@ -66,66 +66,66 @@ const ProfilePage = () => {
 					<div className="homepage-container">
 						<div className="homepage-first-area">
 							<div className="homepage-first-area-left-side">
-							<br/><br/><br/><br/><br/><br/>
+								<br /><br /><br /><br /><br /><br />
 								<div className="title homepage-title">
 									{userProfile.username}
 								</div>
 
 								<div className="subtitle homepage-subtitle">
 									{userProfile.bio ? (
-									<>{userProfile.bio}</>
-								) : (
-									<div>please Add Comment</div>
-								)}
+										<>{userProfile.bio}</>
+									) : (
+										<div>please Add Comment</div>
+									)}
 								</div>
 							</div>
 
 							<div className="homepage-first-area-right-side">
 								<div className="homepage-image-container">
 									<div className="homepage-image-wrapper">
-										{ userProfile.profilePicURL ? (
+										{userProfile.profilePicURL ? (
 											<img
-											src={userProfile.profilePicURL}
-											alt="about"
-											className="homepage-image"
-											style={{ width: "300px", height: "300px", objectFit: "cover" }}
-										/>
+												src={userProfile.profilePicURL}
+												alt="about"
+												className="homepage-image"
+												style={{ width: "300px", height: "300px", objectFit: "cover" }}
+											/>
 										) : (
 											<img
-											src={default_img}
-											alt="about"
-											className="homepage-image"
-										/>
-										) }
+												src={default_img}
+												alt="about"
+												className="homepage-image"
+											/>
+										)}
 									</div>
 								</div>
 							</div>
 						</div>
-					
+
 						<div className="homepage-socials">
-							{ visitingOwnProfileAndAuth ? (
-								<Button onClick={onOpen} 
-								leftIcon={<MdBuild />} 
-								colorScheme='pink' 
-								variant='solid'>
-    								Settings
-  								</Button>
+							{visitingOwnProfileAndAuth ? (
+								<Button onClick={onOpen}
+									leftIcon={<MdBuild />}
+									colorScheme='pink'
+									variant='solid'>
+									Settings
+								</Button>
 							) : (
 								<></>
-							) }
-							{ visitingAnotherProfileAndAuth ? (
-								<Button 
-								leftIcon={<SlUserFollow />} 
-								colorScheme='green' 
-								variant='solid'
-								onClick={handleFollowUser}
-								isLoading={isUpdating}
+							)}
+							{visitingAnotherProfileAndAuth ? (
+								<Button
+									leftIcon={<SlUserFollow />}
+									colorScheme='green'
+									variant='solid'
+									onClick={handleFollowUser}
+									isLoading={isUpdating}
 								>
 									{isFollowing ? "Unfollow" : "Follow"}
-							  </Button>
+								</Button>
 							) : (
 								<></>
-							) }
+							)}
 							{/* <Button onClick={onOpen} leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
     							Settings
   							</Button> */}
@@ -187,12 +187,12 @@ const ProfilePage = () => {
 						{/* <div className="homepage-projects">
 							<AllProjects />
 						</div> */}
-						<br/><br/><br/><br/><br/><br/><br/>
+						<br /><br /><br /><br /><br /><br /><br />
 					</div>
 				</div>
 				<ProfileEditor isOpen={isModalOpen} onOpen={onOpen} onClose={onClose} />
 			</div>
-			</>
+		</>
 	);
 };
 

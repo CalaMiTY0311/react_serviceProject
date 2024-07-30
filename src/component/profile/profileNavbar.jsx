@@ -21,11 +21,11 @@ const NavBar = (props) => {
 							>
 								<Link to="/">Home</Link>
 							</li>
-						</ul>	
+						</ul>
 					</div>
 				</nav>
 			</div>
-			</>
+		</>
 	);
 };
 

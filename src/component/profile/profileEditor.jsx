@@ -42,15 +42,15 @@ const ProfileEditor = ({ isOpen, onClose }) => {
 
 
     const handleEditProfile = async () => {
-		try {
-			await editProfile(inputs, selectedFile);
+        try {
+            await editProfile(inputs, selectedFile);
             setSelectedFile(null);
-			onClose();
+            onClose();
             navigate(`/`);
-		} catch (error) {
-			showToast("Error", error.message, "error");
-		}
-	};
+        } catch (error) {
+            showToast("Error", error.message, "error");
+        }
+    };
 
     return (
         <>
@@ -84,7 +84,7 @@ const ProfileEditor = ({ isOpen, onClose }) => {
                                     </Button>
                                 </Center>
                                 <Input type='file'
-                                    hidden ref={fileRef} onChange={handleImageChange} 
+                                    hidden ref={fileRef} onChange={handleImageChange}
                                 />
                             </Stack>
                         </FormControl>
@@ -92,16 +92,16 @@ const ProfileEditor = ({ isOpen, onClose }) => {
                         <FormControl>
                             <FormLabel>username</FormLabel>
                             <Input placeholder={inputs.username || authUser.username}
-                             value={inputs.username || authUser.username} 
-                             onChange={(e) => setInputs({ ...inputs, username: e.target.value })}/>
-                            
+                                value={inputs.username || authUser.username}
+                                onChange={(e) => setInputs({ ...inputs, username: e.target.value })} />
+
                         </FormControl>
 
                         <FormControl>
                             <FormLabel>edit Bio</FormLabel>
-                            <Input placeholder={inputs.bio || authUser.bio} 
-                            value={inputs.bio || authUser.bio} 
-                            onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}/>
+                            <Input placeholder={inputs.bio || authUser.bio}
+                                value={inputs.bio || authUser.bio}
+                                onChange={(e) => setInputs({ ...inputs, bio: e.target.value })} />
                         </FormControl>
 
                         <FormControl>
