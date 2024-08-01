@@ -21,7 +21,8 @@ const initialItems = [
   { id: '3', content: 'Item 3' },
 ];
 
-function PostForm({ inputs, setInputs, category, fileLink, setFileLink, handleSelectCategory, handleCreatePost }) {
+function PostForm({ inputs, setInputs, category, fileLink, setFileLink, handleSelectCategory, handleCreatePost,
+                    handleImageChange, selectedFile,  setSelectedFile, imageRef }) {
 
   const [items, setItems] = useState(initialItems);
 
@@ -37,6 +38,7 @@ function PostForm({ inputs, setInputs, category, fileLink, setFileLink, handleSe
           category={category}
           fileLink={fileLink} setFileLink={setFileLink}
           handleSelectCategory={handleSelectCategory}
+          handleImageChange={handleImageChange} selectedFile={selectedFile} setSelectedFile={setSelectedFile} imageRef={imageRef}
         />
         <div className="shipping-address_container">
           <h3>Shipping Address</h3>

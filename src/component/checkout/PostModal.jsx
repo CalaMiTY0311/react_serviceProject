@@ -21,9 +21,11 @@ import {
 import SelectCategory from "./SelectCategory";
 import { useDisclosure } from "@chakra-ui/react";
 import usePreviewImg from "../../hooks/usePreviewImg";
-const ModalForm = ({ category, handleSelectCategory, fileLink, setFileLink, imgRef }) => {
+const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
+                    // handleImageChange, selectedFile, setSelectedFile, imageRef
+                  }) => {
 
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
 
   const handleFilesChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
@@ -87,26 +89,7 @@ const ModalForm = ({ category, handleSelectCategory, fileLink, setFileLink, imgR
               </Radio>
             </Stack>
             <br />
-            {select ? (
-              <>
-              <Text mb='8px'>Download URL </Text>
-              <Input
-                placeholder='Here is a sample placeholder'
-                size='sm'
-                onChange={(e) => setFileLink({ ...fileLink, downloadURL: e.target.value })}
-              />
-              </>     
-            ) : (
-              <form>
-              <input
-                className='file-input'
-                type="file"
-                // mulitple
-                onChange={handleFilesChange}
-              />
-              {/* <button onClick={handleTest}>upload</button> */}
-            </form>
-            )}
+
             <br /><br />
             <Box>
               Display Image
