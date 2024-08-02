@@ -21,23 +21,16 @@ import {
 import SelectCategory from "./SelectCategory";
 import { useDisclosure } from "@chakra-ui/react";
 
-const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
+const ModalForm = ({category, handleSelectCategory,
                     handleImageChange, selectedFile, setSelectedFile, imageRef}) => {
-
-  const [select, setSelect] = useState(true);
-
-  const handleSelect = () => {
-    setSelect((prev) => !prev);
-  };
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
 
   return (
     <>
-      <h3>Tag</h3>
       <Button mt={4} onClick={onOpen}>
-        Open Modal
+        Select Category
       </Button>
 
       <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size="xs">
@@ -55,33 +48,6 @@ const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
             </Stack>
 
             <Divider my={4} />
-            <br />
-
-
-            <Stack direction="row" spacing={5}>
-              <Radio
-                isChecked={select}
-                size='lg'
-                onChange={handleSelect}
-              >
-                URL
-              </Radio>
-              <Radio
-                isChecked={!select}
-                size='lg'
-                onChange={handleSelect}
-              >
-                Upload
-              </Radio>
-            </Stack>
-            <br />
-
-            <Text mb='8px'>Value:</Text>
-      <Input
-        onChange={(e) => setFileLink({ ...fileLink, modelfileL: e.target.value })}
-        placeholder='Here is a sample placeholder'
-        size='sm'
-      />
 
             <br /><br />
             <Box>

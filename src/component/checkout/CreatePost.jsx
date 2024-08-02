@@ -1,6 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
+import "./CreatePost.css";
 
-import PostForm from "./PostForm";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import usePostStore from "../../store/postStore"
@@ -13,70 +16,113 @@ import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 import { useLocation } from "react-router-dom";
 
-const CreatePost = () => {
+import ModalForm from "./ModalForm";
 
-    // 타이틀, 바디 폼
+import {
+  Input, Textarea, Radio, Stack
+} from "@chakra-ui/react";
+
+function CreatePost() {
+
+// 포스트 제목 본문 모델다운로드링크
     const [inputs, setInputs] = useState({
-        title: "",
-        body: "",
-    });
+      title: "",
+      body: "",
+      fileURL:"",
+  });
+// 링크 or 업로드 선택
+  const [uploadOption, setuploadOption] = useState(true);
+  const handleUploadOption = () => {
+    setuploadOption((prev) => !prev);
+  };
 
-    // 카테고리
-    const [category, setCategory] = useState({
-        gender: {
-            Male: false,
-            Female: false,
-            Other: false,
-        },
-        categories: {
-            Vtuber: false,
-            Actor: false,
-        }
-    });
-    const handleSelectCategory = (type, name) => {
-        setCategory(prevState => ({
-            ...prevState,
-            [type]: {
-                ...prevState[type],
-                [name]: !prevState[type][name]
-            }
-        }));
-    };
+  // 카테고리
+  const [category, setCategory] = useState({
+          // 성별
+          Male: false,
+          Female: false,
+          Other: false,
 
-    const [fileLink, setFileLink] = useState({
-        downloadURL:""
-    })
+          // 기타 카테고리
+          Vtuber: false,
+          Actor: false,
+  });
+const handleSelectCategory = (name) => {
+    setCategory(prevState => ({
+        ...prevState,
+        [name]: !prevState[name]
+    }));
+};
 
-    const imageRef = useRef(null);
+// 포스트 이미지
+const imageRef = useRef(null);
+const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
 
-    const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
-
-    // const { isLoading, handleCreatePost } = useCreatePost();
-
+// 업로드 함수
+const { isLoading, handleCreatePost } = useCreatePost();
     const handlePostCreation = async () => {
 		try {
 			await handleCreatePost(selectedFile, inputs, fileLink, category);
-			onClose();
-			setCaption("");
+			// onClose();
 			setSelectedFile(null);
 		} catch (error) {
-			showToast("Error", error.message, "error");
+			// showToast("Error", error.message, "error");
+            console.log(error.message)
 		}
 	};
 
-    return (
-        <>
-            <PostForm inputs={inputs} setInputs={setInputs}
-                category={category} handleSelectCategory={handleSelectCategory}
-                fileLink={fileLink} setFileLink={setFileLink}
-                // handleCreatePost={handleCreatePost} 
-                handleImageChange={handleImageChange} selectedFile={selectedFile} setSelectedFile={setSelectedFile} imageRef={imageRef}
-                handlePostCreation={handlePostCreation}
-                />
-        </>
-    )
+  return (
+    <>
+      <div className="user-info_container">
+        <br /><br />
+        <div className="contact-info_container">
+          <h3>Title</h3>
+          <Input placeholder='large size' size='lg' height="25px" onChange={(e) => setInputs({ ...inputs, title: e.target.value })} />
+        <br />
+        <ModalForm
+          category={category} handleSelectCategory={handleSelectCategory}
+          handleImageChange={handleImageChange} selectedFile={selectedFile} setSelectedFile={setSelectedFile} imageRef={imageRef}
+        />
+        <Stack direction="row" spacing={5}>
+              <Radio
+                isChecked={uploadOption}
+                size='lg'
+                onChange={handleUploadOption}
+              >
+                URL
+              </Radio>
+              <Radio
+                isChecked={!uploadOption}
+                size='lg'
+                onChange={handleUploadOption}
+              >
+                Upload
+              </Radio>
+            </Stack>
+          <h3> URL Or Upload</h3>
+            <Input placeholder='large size' size='lg' height="25px" onChange={(e) => setInputs({ ...inputs, fileUrl: e.target.value })} />
+        </div>
+        <div className="shipping-address_container">
+          <h3>Shipping Address</h3>
+          <div className="shipping-address_wrapper">
+            <Textarea
+              placeholder="Enter text here"
+              size="lg"
+              // width="400px"
+              height="304px" // Increased height for larger textarea
+              fontSize="1.5rem"
+              resize="none" // Disable resize
+              onChange={(e) => setInputs({ ...inputs, body: e.target.value })}
+            />
+            <button className="checkout-btn" onClick={handlePostCreation}>
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
-
 export default CreatePost;
 
 function useCreatePost() {
@@ -88,11 +134,11 @@ function useCreatePost() {
 	const userProfile = useUserProfileStore((state) => state.userProfile);
 	const { pathname } = useLocation();
 
+    // console.log(authUser.uid)
 	const handleCreatePost = async (selectedFile, inputs, fileLink, category) => {
 		if (isLoading) return;
 		if (!selectedFile) throw new Error("Please select an image");
 		setIsLoading(true);
-
 		const newPost = {
             title: inputs.title,
             body: inputs.body,

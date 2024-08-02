@@ -14,32 +14,32 @@ const SelectCategory = ({ category, handleSelectCategory }) => {
             </Box>
             <Stack direction="row" spacing={4}>
 
-                <Button
-                    colorScheme='teal'
-                    variant={category.gender.Male ? 'solid' : 'outline'}
-                    size='lg'
-                    onClick={() => handleSelectCategory('gender', 'Male')}
-                >
-                    Male
-                </Button>
+            <Button
+    colorScheme='teal'
+    variant={category.Male ? 'solid' : 'outline'}
+    size='lg'
+    onClick={() => handleSelectCategory('Male')}
+>
+    Male
+</Button>
 
-                <Button
-                    colorScheme='teal'
-                    variant={category.gender.Female ? 'solid' : 'outline'}
-                    size='lg'
-                    onClick={() => handleSelectCategory('gender', 'Female')}
-                >
-                    Female
-                </Button>
+<Button
+    colorScheme='teal'
+    variant={category.Female ? 'solid' : 'outline'}
+    size='lg'
+    onClick={() => handleSelectCategory('Female')}
+>
+    Female
+</Button>
 
-                <Button
-                    colorScheme='teal'
-                    variant={category.gender.Other ? 'solid' : 'outline'}
-                    size='lg'
-                    onClick={() => handleSelectCategory('gender', 'Other')}
-                >
-                    Other
-                </Button>
+<Button
+    colorScheme='teal'
+    variant={category.Other ? 'solid' : 'outline'}
+    size='lg'
+    onClick={() => handleSelectCategory('Other')}
+>
+    Other
+</Button>
 
             </Stack>
 
@@ -48,23 +48,23 @@ const SelectCategory = ({ category, handleSelectCategory }) => {
             </Box>
             <Stack direction="row" spacing={4}>
 
-                <Button
-                    colorScheme='teal'
-                    variant={category.categories.Vtuber ? 'solid' : 'outline'}
-                    size='md'
-                    onClick={() => handleSelectCategory('categories', 'Vtuber')}
-                >
-                    Vtuber
-                </Button>
+            <Button
+    colorScheme='teal'
+    variant={category.Vtuber ? 'solid' : 'outline'}
+    size='lg'
+    onClick={() => handleSelectCategory('Vtuber')}
+>
+    Vtuber
+</Button>
 
-                <Button
-                    colorScheme='teal'
-                    variant={category.categories.Actor ? 'solid' : 'outline'}
-                    size='md'
-                    onClick={() => handleSelectCategory('categories', 'Actor')}
-                >
-                    Actor
-                </Button>
+<Button
+    colorScheme='teal'
+    variant={category.Actor ? 'solid' : 'outline'}
+    size='md'
+    onClick={() => handleSelectCategory('Actor')}
+>
+    Actor
+</Button>
                 
             </Stack>
         </>
