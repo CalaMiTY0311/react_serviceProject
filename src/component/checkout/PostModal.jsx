@@ -20,21 +20,9 @@ import {
 
 import SelectCategory from "./SelectCategory";
 import { useDisclosure } from "@chakra-ui/react";
-import usePreviewImg from "../../hooks/usePreviewImg";
+
 const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
-                    // handleImageChange, selectedFile, setSelectedFile, imageRef
-                  }) => {
-
-  // const [files, setFiles] = useState([]);
-
-  const handleFilesChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    setFiles(selectedFiles);
-    console.log("files : ", selectedFiles);
-  }
-  // const handleTest= () => {
-  //   console.log("files : ", files)
-  // }
+                    handleImageChange, selectedFile, setSelectedFile, imageRef}) => {
 
   const [select, setSelect] = useState(true);
 
@@ -44,8 +32,6 @@ const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef(null)
-  const imageRef = useRef(null)
-  const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
 
   return (
     <>
@@ -90,6 +76,13 @@ const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
             </Stack>
             <br />
 
+            <Text mb='8px'>Value:</Text>
+      <Input
+        onChange={(e) => setFileLink({ ...fileLink, modelfileL: e.target.value })}
+        placeholder='Here is a sample placeholder'
+        size='sm'
+      />
+
             <br /><br />
             <Box>
               Display Image
@@ -99,7 +92,7 @@ const ModalForm = ({category, handleSelectCategory, fileLink, setFileLink,
                 {selectedFile && (
                   // <Flex mt={5} w={"full"} position={"relative"} justifyContent={"center"}>
                   <>
-                    <Image boxSize='200px' src={selectedFile} alt='Dan Abramov' />
+                    <Image boxSize='200px' src={selectedFile} />
                     { }
                   </>
                 )}
