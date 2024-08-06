@@ -4,6 +4,7 @@ import HomeInfo from "./HomeInfo";
 import "./HomeMain.css";
 
 function HomeMain() {
+
   return (
     <main className="home-main container">
       <HomeInfo />

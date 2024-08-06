@@ -39,7 +39,8 @@ const ProfilePage = () => {
 	const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
 	const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(userProfile?.uid);
 
-	// console.log(authUser)
+	console.log("authUser :", authUser)
+	console.log("userProfile :", userProfile)
 
 	return (
 		<>

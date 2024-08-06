@@ -33,17 +33,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* Auth */}
-          {/* <Switch> */}
           <Route path='/login' element={!authUser ? <Login /> : <Navigate to='/' />} />
           <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to='/' />} />
-          {/* </Switch> */}
+
+          <Route path='/modelPost' element={authUser ? <ModelPost /> : <Navigate to='/login' />} />
+          {/* <Route path="/modelPost" element={<ModelPost />} /> */}
+
           <Route path='/profile/:username' element={<UserProfile />} />
           <Route element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path="/explore/:category" element={<ExploreProduct />} />
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/models/:category" element={<ModelsPage />} />
-            <Route path="/modelPost" element={<ModelPost />} />
           </Route>
         </Routes>
         <Toaster
