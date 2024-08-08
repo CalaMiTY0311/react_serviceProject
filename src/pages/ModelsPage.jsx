@@ -7,6 +7,8 @@ import "./ModelsPage.css";
 import { useParams } from "react-router-dom";
 import Shimmer from "../component/shimmer/Shimmer";
 
+import usePostStore from "../store/postStore";
+
 const ModelPosts = () => {
 
     const [priceFlter, setPriceFilter] = useState("default");

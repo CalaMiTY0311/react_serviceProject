@@ -14,7 +14,7 @@ docs = collection_name.stream()
 for doc in docs:
     doc_id = doc.id
     data = doc.to_dict()
-    data['header'] = ""
+    data['posts'] = []
     collection_name.document(doc_id).update(data)
 
 # updated_docs = collection_name.stream()
