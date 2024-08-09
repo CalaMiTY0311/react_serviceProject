@@ -4,7 +4,8 @@ import useAuthStore from "../store/authStore";
 import useShowToast from "./useShowToast";
 import useUserProfileStore from "../store/userProfileStore";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { firestore } from "../firebase/firebase";
+import { firestore } from "../config/firebase-config";
+
 
 const useGetModelPosts = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -16,16 +17,20 @@ const useGetModelPosts = () => {
 	useEffect(() => {
 		const getModelPosts = async () => {
 			setIsLoading(true);
-			if (authUser.following.length === 0) {
-				setIsLoading(false);
-				setPosts([]);
-				return;
-			}
-			const q = query(collection(firestore, "posts"), where("createdBy", "in", authUser.following));
+			// if (authUser.following.length === 0) {
+			// 	setIsLoading(false);
+			// 	setPosts([]);
+			// 	return;
+			// }
+
+            // const q = query(collection(firestore, "posts"), where("createdBy", "in", authUser.following));
+			const q = query(collection(firestore, "posts"));
 			try {
 				const querySnapshot = await getDocs(q);
-				const feedPosts = [];
 
+                console.log(querySnapshot)
+				const feedPosts = [];
+                console.log("feedPosts : ", feedPosts)
 				querySnapshot.forEach((doc) => {
 					feedPosts.push({ id: doc.id, ...doc.data() });
 				});

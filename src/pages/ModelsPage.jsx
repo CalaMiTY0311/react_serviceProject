@@ -9,7 +9,13 @@ import Shimmer from "../component/shimmer/Shimmer";
 
 import usePostStore from "../store/postStore";
 
+import useGetModelPosts from "../hooks/useGetModelPosts";
+
 const ModelPosts = () => {
+
+  const { isLoading, posts } = useGetModelPosts();
+
+  console.log(posts)
 
     const [priceFlter, setPriceFilter] = useState("default");
     const [checkBoxState, setCheckBoxState] = useState({
