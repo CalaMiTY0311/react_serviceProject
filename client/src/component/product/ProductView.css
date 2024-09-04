@@ -1,0 +1,206 @@
+.product-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  min-height: calc(100vh - 70px);
+  --image-wrapper-width: 55%;
+}
+
+.product-img_wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 90%;
+  height: clamp(260px, 90%, 380px);
+
+  border: none;
+  width: var(--image-wrapper-width);
+  overflow: hidden;
+}
+.product-img_wrapper::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  width: 90%;
+  height: 90%;
+  z-index: -1;
+  border-radius: 32px;
+}
+.product-img_wrapper img {
+  margin-top: 40px;
+  width: 40%;
+  height: 70%;
+  transition: all 0.2s;
+  border: none;
+}
+
+.product-info {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: calc(100% - var(--image-wrapper-width));
+  padding-top: 40px;
+}
+.product-name {
+  font-size: 3rem;
+}
+.product-price {
+  font-size: 2.2rem;
+}
+.product-description {
+  font-size: 1.7rem;
+  color: #666;
+}
+.product-description::first-letter {
+  text-transform: capitalize;
+}
+.product-cart_btn {
+  width: 20rem;
+  padding: 1.4rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.8rem;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.product-cart_btn:hover {
+  scale: 1.01;
+  background-color: #1a1a1a;
+}
+
+@media (max-width: 800px) {
+  .product-container {
+    --image-wrapper-width: 80%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-img_wrapper {
+    height: 50%;
+  }
+  .product-img_wrapper::after {
+    border-radius: 18px;
+  }
+  .product-img_wrapper img {
+    margin-top: 5%;
+  }
+  .product-info {
+    width: 100%;
+    padding-top: 0px;
+  }
+  .product-name {
+    font-size: clamp(2rem, 3vw + 1rem, 2.8rem);
+  }
+  .product-price {
+    font-size: clamp(1.4rem, 2vw + 1rem, 2.2rem);
+  }
+  .product-description {
+    font-size: clamp(1.3rem, 1vw + 1rem, 2rem);
+  }
+  .product-cart_btn {
+    font-size: 1.5rem;
+    padding: 1.2rem 0px;
+    width: 12rem;
+  }
+}
+
+.comments-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.comments-section {
+  width: var(--image-wrapper-width); /* Match the width of the product details */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* Rest of the existing CSS for comments, including mobile responsiveness */
+.comments-section .comment {
+  margin-bottom: 20px;
+}
+
+.comments-section .comment:last-child {
+  margin-bottom: 0;
+}
+
+.comments-section .comment .comment-user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comments-section .comment .comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comments-section .comment .comment-author {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.comments-section .comment .comment-time {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.comments-section .comment .comment-text {
+  margin-top: 5px;
+  font-size: 1.1rem;
+}
+
+.comments-section .comment .comment-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.comments-section .comment .action {
+  cursor: pointer;
+  color: #007bff;
+  font-size: 1rem;
+}
+
+.comments-section .comment .action:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 800px) {
+  .comments-section {
+    width: 100%; /* Make the comments section full width on mobile */
+    padding: 10px;
+  }
+
+  .comments-section .comment .comment-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .comments-section .comment .comment-author {
+    font-size: 1rem;
+  }
+
+  .comments-section .comment .comment-time {
+    font-size: 0.8rem;
+  }
+
+  .comments-section .comment .comment-text {
+    font-size: 1rem;
+  }
+
+  .comments-section .comment .action {
+    font-size: 0.9rem;
+  }
+}

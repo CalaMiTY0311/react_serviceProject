@@ -1,0 +1,83 @@
+.user-info_container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  input {
+    width: 100%;
+    padding: 12px 10px;
+    font-weight: 500;
+    border: 1px solid #bbb;
+    outline: none;
+    border-radius: 10px;
+  }
+  input:focus {
+    border: 1px solid black;
+  }
+}
+.user-info_container h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+.shipping-address_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  --gap: 20px;
+  gap: var(--gap);
+}
+
+#firstname,
+#lastname {
+  width: calc(50% - calc(var(--gap) / 2));
+}
+.checkout-btn {
+  width: 60%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.4rem;
+}
+.checkout-btn:hover {
+  background-color: #303030;
+}
+
+
+.order-summary_container {
+  --border-color: #dbdbdb;
+  margin: 0px 50px;
+  background-color: #ffffff;
+
+  border-radius: 4px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr 8fr 1fr;
+  margin-top: 30px;
+}
+
+.order-summary-image {
+  width: 456px; /* 고정 너비 */
+  height: 456px; /* 고정 높이 */
+  display: block; /* 이미지 요소를 블록 레벨로 설정 */
+  margin: 0 auto; /* 이미지를 가운데 정렬 */
+  margin-top: 30px;
+  object-fit: cover; /* 이미지가 350x350 크기에 맞게 자를 수 있도록 설정 */
+  border: 1px solid #dbdbdb; /* 테두리를 추가하여 이미지와 주변 요소를 구분 */
+  border-radius: 4px; /* 테두리 반경을 추가하여 이미지의 모서리를 둥글게 만듭니다 */
+}
+
+.order-summary_container h3 {
+  font-size: 1.6rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+  .order-summary_container {
+    grid-row: 1;
+  }
+}

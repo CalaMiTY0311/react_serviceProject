@@ -1,0 +1,155 @@
+/* @import "./data/styles.css";
+
+.nav-container {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navbar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 3vh;
+	z-index: 999;
+}
+
+.nav-background {
+	width: 380px;
+	height: 40px;
+	padding-left: 0%;
+	padding-right: 0%;
+	background: #fff;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 40px;
+}
+
+.nav-list {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	align-items: center;
+	margin-left: -16px;
+	margin-right: 20px;
+	margin-top: 11px;
+}
+
+.nav-item {
+	font-weight: bold;
+	font-size: 80%;
+}
+
+.nav-item.active a {
+	color: var(--link-color) !important;
+}
+
+.nav-item a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+.nav-item a:hover {
+	color: var(--link-color);
+	transition: color 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+	.navbar {
+		margin-left: 25%;
+		margin-right: 25%;
+		width: 80%;
+		font-size: 80%;
+	}
+
+	.nav-background {
+		width: 80%;
+		height: 40px;
+	}
+
+	.nav-item {
+		font-weight: bold;
+	}
+} */
+@import "./data/styles.css";
+
+.nav-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to ensure proper alignment */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 3vh;
+    z-index: 999;
+    width: 100%; /* Full width to manage small screen sizes */
+}
+
+.nav-background {
+    width: 100%; /* Full width for responsive design */
+    max-width: 380px; /* Maximum width */
+    height: 40px;
+    background: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    display: flex;
+    justify-content: center; /* Center the nav-list horizontally */
+    align-items: center; /* Center the nav-list vertically */
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    margin: 0; /* Remove extra margins */
+    padding: 0;
+    width: 100%; /* Ensure items spread across full width */
+    max-width: 360px; /* Constrain the list within the background */
+}
+
+.nav-item {
+    font-weight: bold;
+    font-size: 80%;
+    text-align: center;
+    flex: 1; /* Ensure each item takes up equal space */
+}
+
+.nav-item.active a {
+    color: var(--link-color) !important;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.nav-item a:hover {
+    color: var(--link-color);
+    transition: color 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%; /* Full width for small screens */
+        font-size: 80%;
+    }
+
+    .nav-background {
+        width: 100%;
+        height: 40px;
+    }
+
+    .nav-item {
+        font-weight: bold;
+    }
+}

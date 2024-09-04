@@ -1,0 +1,266 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+
+.comment-section {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.875rem repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+    gap: 1.25rem;
+    padding: 1.875rem;
+    background-color: white;
+    border-radius: 0.625rem;
+}
+
+.comment-score {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.625rem;
+    background-color: hsl(223, 19%, 93%);
+    border-radius: 0.313rem;
+    height: fit-content;
+}
+
+.comment-score-text {
+    color: hsl(238, 40%, 52%);
+    font-weight: 700;
+}
+
+
+.comment-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem
+}
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    height: fit-content;
+    color:  hsl(211, 10%, 45%);
+    font-weight: 400;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.comment-avatar {
+    width: 1.875rem;
+    height: 1.875rem;
+}
+
+.comment-author {
+    color: hsl(212, 24%, 26%);
+    font-weight: 700;
+}
+
+.comment-actions {
+    grid-column: 3;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.comment-actions > div {
+    display: flex;
+    align-items: center;
+    gap: 0.313rem;
+}
+
+
+.comment-text  {
+    grid-column: 2 / span 2;
+    color: hsl(211, 10%, 45%);
+}
+
+
+.replies-section {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    height: fit-content;
+    background: hsl(228, 33%, 97%);
+}
+
+.replies-divider {
+    width: 0.125rem;
+    margin: 0.625rem 2.313rem;
+    background: hsl(223, 19%, 93%);;
+}
+ 
+.replies-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.replyTo {
+    color: hsl(238, 40%, 52%);
+    font-weight: 700;
+}
+
+.self-tag {
+    background-color: hsl(238, 40%, 52%);
+    color: white;
+    padding-inline: 0.313rem;
+}
+
+
+textarea {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    height: fit-content;
+    padding: 0.625rem 1.25rem;
+    border: 0.063rem solid black;
+    border-radius: 0.625rem;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none
+}
+
+.edit-wrapper {
+    grid-column: 2 / span 2;
+    display: flex;
+    gap: 0.625rem;
+}
+
+.edit-comment-text {
+    width: 100%;
+}
+
+.save-edit {
+    margin-left: auto;
+}
+
+
+.replying-section {
+    background-color: white;
+    border-radius: 0.625rem;
+    width: 100%;
+    padding: 1.25rem;;
+    display: flex;
+    gap: 1.25rem;
+}
+
+.reply-comment-text {
+    width: 100%;
+}
+
+.upvote, .downvote {
+    color: #C5C6EF;
+}
+
+.upvote:hover, .downvote:hover {
+    color: hsl(238, 40%, 52%);
+}
+
+.action:hover {
+    cursor: pointer;
+    filter: opacity(.8);
+}
+
+.reply-text, .edit-text {
+    color: hsl(238, 40%, 52%);
+    font-weight: 500;
+}
+
+.delete-text {
+    color: hsl(358, 79%, 66%);
+    font-weight: 500;
+}
+
+.delete-back-btn:hover, .delete-btn:hover {
+    filter: opacity(0.8);
+}
+
+
+@media screen and (max-width: 47rem) {
+    .comment-user-info {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+    }
+    .comment-score {
+        grid-row: 3;
+        flex-direction: row;
+        width: fit-content;
+        gap: 0.63rem;
+    }
+
+    .comment-text {
+        grid-row: 2;
+        grid-column: 1 / span 3;
+    }
+
+    .edit-wrapper {
+        grid-row: 2;
+        grid-column: 1 / span 3;
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+    }
+
+    .edit-comment-text {
+        display: 100%;
+    }
+
+    .comment-actions {
+        grid-row: 3;
+    }
+
+    .comment-time {
+        font-size: 0.8rem;
+    }
+
+    .replying-section {
+        display: grid;
+    }
+
+    .comment-avatar {
+        grid-row: 2
+    }
+
+    .reply-edit {
+        margin-left: auto;
+        grid-row: 2
+    }
+
+    .reply-comment-text {
+        grid-column: 1 / span 2;
+    }
+
+    .replies-section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .replies-divider {
+        width: 0.125rem;
+        margin-inline: 0.625rem;
+    }
+
+    .replies-content {
+        display: flex;
+        justify-content: space-between
+    }
+
+
+}
